@@ -1,0 +1,4 @@
+logs/
+.env
+node_modules/
+config/notes.md
