@@ -57,7 +57,8 @@ const createNewUser = asyncHandler(async (req, res) => {
         pan = '', 
         aadhaar = '', 
         passport = '', 
-        encryptedPackage = ''
+        encryptedPackage = '',
+        premium = false
     } = req.body;
     
     if(!fullName || !email || !encryptedPackage){
@@ -73,7 +74,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     }
 
 
-    const userObject = { fullName, email, phone, dob, address, pan, aadhaar, passport, encryptedPackage}
+    const userObject = { fullName, email, phone, dob, address, pan, aadhaar, passport, encryptedPackage, premium}
 
     const user = await User.create(userObject);
 

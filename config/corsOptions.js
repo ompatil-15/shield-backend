@@ -1,5 +1,6 @@
 const allowedOrigins = [
-    "http://ompatil-shield.onrender.com"
+    "https://ompatil-shield.onrender.com",
+    "https://www.ompatil-shield.onrender.com"
 ]
 
 const corsOptions = {

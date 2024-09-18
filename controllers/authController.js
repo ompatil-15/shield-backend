@@ -39,6 +39,7 @@ const login = asyncHandler(async (req, res) => {
             "UserInfo": {
                 "id": foundUser._id,
                 "email": foundUser.email,
+                "premium": foundUser.premium,
                 "encryptedPackage": foundUser.encryptedPackage
             }
         },
@@ -89,6 +90,7 @@ const refresh = (req, res) => {
                     "UserInfo": {
                         "id": foundUser._id,
                         "email": foundUser.email,
+                        "premium": foundUser.premium,
                         "encryptedPackage": foundUser.encryptedPackage
                     }
                 },
@@ -118,14 +120,20 @@ const createNewUser = asyncHandler(async (req, res) => {
     const { 
         fullName = '', 
         email = '', 
-        password = '', 
         phone = '', 
-        address = '', 
+        address = {
+            streetAddress: "",
+            city: "",
+            state: "",
+            country: "",
+            pincode: ""
+        }, 
         dob = '', 
         pan = '', 
         aadhaar = '', 
         passport = '',
-        encryptedPackage = '' 
+        encryptedPackage = '',
+        premium = false 
     } = req.body;
     
     if(!fullName || !email || !encryptedPackage){
@@ -140,7 +148,7 @@ const createNewUser = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'Email already exists'});
     }
 
-    const userObject = { fullName, email, password, phone, dob, address, pan, aadhaar, passport, encryptedPackage}
+    const userObject = { fullName, email, password, phone, dob, address, pan, aadhaar, passport, encryptedPackage, premium}
 
     const user = await User.create(userObject);
 
