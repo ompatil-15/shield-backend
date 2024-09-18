@@ -148,7 +148,7 @@ const createNewUser = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'Email already exists'});
     }
 
-    const userObject = { fullName, email, password, phone, dob, address, pan, aadhaar, passport, encryptedPackage, premium}
+    const userObject = { fullName, email, phone, dob, address, pan, aadhaar, passport, encryptedPackage, premium}
 
     const user = await User.create(userObject);
 
